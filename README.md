@@ -32,10 +32,7 @@ dependencies {
 }
 ```
 
-相比 WMRouter/ARouter，此库专注于路由。
-
-页面参数解析由另外的库(https://github.com/czy1121/argument)负责。  
-不包含 **依赖注入/Fragment获取/模块间通信** 之类的不相关功能。
+相比 WMRouter/ARouter，此库专注于路由，页面参数解析由另外的库(https://github.com/czy1121/argument)负责，不包含 **依赖注入/Fragment获取/模块间通信** 之类的不相关功能。
 
 ## 基础用法
 
