@@ -1,0 +1,13 @@
+
+apply from: "https://gitee.com/ezy/gradle/raw/master/build-library-app.gradle"
+
+apply plugin: 'kotlin-android-extensions'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+
+    implementation project(":router")
+    implementation project(':router-annotation')
+    implementation "me.reezy.jetpack:argument:0.4.0"
+    kapt project(":router-compiler")
+}
