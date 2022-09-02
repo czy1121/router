@@ -1,7 +1,21 @@
-
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        maven { url cosmoRepoPath }
+        google()
+        mavenCentral()
+    }
+}
 rootProject.name = "router"
-
 include ':app'
+
 include ':router'
 include ':router-annotation'
-include ':router-compiler'
+include ':router-ksp'

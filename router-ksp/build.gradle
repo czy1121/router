@@ -1,0 +1,8 @@
+
+
+apply from: "$buildGradlePath/build-library-ksp.gradle"
+
+
+dependencies {
+    api project(':router-annotation')
+}

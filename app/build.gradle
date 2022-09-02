@@ -1,13 +1,20 @@
 
-apply from: "https://gitee.com/ezy/gradle/raw/master/build-library-app.gradle"
+apply from: "$buildGradlePath/build-library-demo.gradle"
 
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.google.devtools.ksp'
+
+
+ksp {
+    arg("router.moduleName", "app")
+    arg("router.packageName", "com.demo.${rootProject.name}")
+}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
 
-    implementation project(":router")
+    implementation 'me.reezy.cosmo:argument:0.7.0'
+
+    implementation project(':router')
     implementation project(':router-annotation')
-    implementation "me.reezy.jetpack:argument:0.4.0"
-    kapt project(":router-compiler")
+    ksp project(':router-ksp')
 }

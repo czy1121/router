@@ -13,161 +13,102 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <me.reezy.ui.bk.BKTextView
+        <TextView
             android:id="@+id/page_a"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:layout_marginBottom="5dp"
-            android:paddingHorizontal="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="@android:color/holo_green_dark"
             android:gravity="center"
-            android:text="hello/world"
-            app:bkCornerRadius="10dp"
-            app:bkSolidColor="@android:color/holo_green_dark" />
-        <me.reezy.ui.bk.BKTextView
+            android:paddingHorizontal="10dp"
+            android:text="hello/world" />
+
+        <TextView
             android:id="@+id/page_b"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:layout_marginBottom="5dp"
-            android:paddingHorizontal="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="@android:color/holo_green_dark"
             android:gravity="center"
-            android:text="app://hello/world"
-            app:bkCornerRadius="10dp"
-            app:bkSolidColor="@android:color/holo_green_dark"/>
-        <me.reezy.ui.bk.BKTextView
-            android:id="@+id/page_c"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_marginBottom="5dp"
             android:paddingHorizontal="10dp"
-            android:gravity="center"
-            android:text="router://hello/world"
-            app:bkCornerRadius="10dp"
-            app:bkSolidColor="@android:color/holo_green_dark"/>
-        <me.reezy.ui.bk.BKTextView
-            android:id="@+id/page_d"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_marginBottom="5dp"
-            android:paddingHorizontal="10dp"
-            android:gravity="center"
-            android:text="https://demo.reezy.me/hello/world"
-            app:bkCornerRadius="10dp"
-            app:bkSolidColor="@android:color/holo_green_dark"/>
+            android:text="app://hello/world" />
 
+ 
 
-
-        <me.reezy.ui.bk.BKTextView
+        <TextView
             android:id="@+id/argument_a"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:layout_marginBottom="5dp"
-            android:paddingHorizontal="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="@android:color/holo_green_dark"
             android:gravity="center"
-            app:bkCornerRadius="10dp"
-            app:bkSolidColor="@android:color/holo_green_dark"
-            android:text="argument?a=hoho&amp;b=22222"/>
-        <me.reezy.ui.bk.BKTextView
+            android:paddingHorizontal="10dp"
+            android:text="argument?a=hoho&amp;b=22222" />
+
+        <TextView
             android:id="@+id/argument_b"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:layout_marginBottom="5dp"
-            android:paddingHorizontal="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="@android:color/holo_green_dark"
             android:gravity="center"
-            app:bkCornerRadius="10dp"
-            app:bkSolidColor="@android:color/holo_green_dark"
-            android:text="argument/haha/33333?c=true"/>
+            android:paddingHorizontal="10dp"
+            android:text="argument/haha/33333?c=true" />
 
 
-
-        <me.reezy.ui.bk.BKTextView
-            android:id="@+id/call"
+        <TextView
+            android:id="@+id/callable"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:layout_marginBottom="5dp"
-            android:paddingHorizontal="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="@android:color/holo_green_dark"
             android:gravity="center"
-            app:bkCornerRadius="10dp"
-            app:bkSolidColor="@android:color/holo_green_dark"
-            android:text="call/demo"/>
+            android:paddingHorizontal="10dp"
+            android:text="callable/demo" />
 
 
-        <me.reezy.ui.bk.BKTextView
+        <TextView
             android:id="@+id/web_a"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:layout_marginBottom="5dp"
-            android:paddingHorizontal="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="@android:color/holo_green_dark"
             android:gravity="center"
-            app:bkCornerRadius="10dp"
-            app:bkSolidColor="@android:color/holo_green_dark"
-            android:text="https://juejin.cn/user/3386151541932887"/>
-        <me.reezy.ui.bk.BKTextView
+            android:paddingHorizontal="10dp"
+            android:text="https://juejin.cn/user/3386151541932887" />
+
+        <TextView
             android:id="@+id/web_b"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:layout_marginBottom="5dp"
-            android:paddingHorizontal="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="@android:color/holo_green_dark"
             android:gravity="center"
-            app:bkCornerRadius="10dp"
-            app:bkSolidColor="@android:color/holo_green_dark"
-            android:text="http://localhost/demo.html"/>
+            android:paddingHorizontal="10dp"
+            android:text="http://localhost/demo.html" />
 
 
-        <me.reezy.ui.bk.BKTextView
+        <TextView
             android:id="@+id/browse_a"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:layout_marginBottom="5dp"
-            android:paddingHorizontal="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="@android:color/holo_green_dark"
             android:gravity="center"
-            app:bkCornerRadius="10dp"
-            app:bkSolidColor="@android:color/holo_green_dark"
-            android:text="唤起微信\n weixin://dl/business?ticket=x"/>
-        <me.reezy.ui.bk.BKTextView
+            android:paddingHorizontal="10dp"
+            android:text="唤起微信\n weixin://dl/business?ticket=x" />
+
+        <TextView
             android:id="@+id/browse_b"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:layout_marginBottom="5dp"
-            android:paddingHorizontal="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="@android:color/holo_green_dark"
             android:gravity="center"
-            app:bkCornerRadius="10dp"
-            app:bkSolidColor="@android:color/holo_green_dark"
-            android:text="在外部浏览器打开外链网页\n https://developer.android.com/kotlin"/>
-
-
-
-
-
-
-        <me.reezy.ui.bk.BKTextView
-            android:id="@+id/post_a"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_marginBottom="5dp"
             android:paddingHorizontal="10dp"
-            android:gravity="center"
-            app:bkCornerRadius="10dp"
-            app:bkSolidColor="@android:color/holo_green_dark"
-            android:text="https://m.demo.reezy.me/post?id=123456"/>
-        <me.reezy.ui.bk.BKTextView
-            android:id="@+id/post_b"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_marginBottom="5dp"
-            android:paddingHorizontal="10dp"
-            android:gravity="center"
-            app:bkCornerRadius="10dp"
-            app:bkSolidColor="@android:color/holo_green_dark"
-            android:text="router://post?id=123456"/>
-        <me.reezy.ui.bk.BKTextView
-            android:id="@+id/post_c"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_marginBottom="5dp"
-            android:paddingHorizontal="10dp"
-            android:gravity="center"
-            app:bkCornerRadius="10dp"
-            app:bkSolidColor="@android:color/holo_green_dark"
-            android:text="https://m.demo.reezy.me/post/123456"/>
+            android:text="在外部浏览器打开外链网页\n https://developer.android.com/kotlin" />
+
+
+
     </LinearLayout>
 </FrameLayout>
