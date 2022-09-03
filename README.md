@@ -192,7 +192,7 @@ routeTo("https://developer.android.com/kotlin")
 @Route("callable/demo")
 class CallableDemo : RouteCallable {
     override fun call(request: RouteRequest) {
-        Toast.makeText(request.context, "this is call demo", Toast.LENGTH_LONG).show()
+        Toast.makeText(request.context, "this is callable demo", Toast.LENGTH_LONG).show()
     }
 }
 
