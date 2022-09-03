@@ -10,7 +10,7 @@
 - 通过 uri 打开外部应用
 
 
-相比 WMRouter/ARouter，此库专注于页面间跳转，页面参数解析由另外的库 (https://github.com/czy1121/argument) 负责，不包含 **依赖注入/Fragment获取/模块间通信** 之类的不相关功能。
+此库专注于页面间跳转，页面参数解析由另外的库 (https://github.com/czy1121/argument) 负责，不包含 **依赖注入/Fragment获取/模块间通信** 之类的不相关功能。
 
 ## 引入
 
