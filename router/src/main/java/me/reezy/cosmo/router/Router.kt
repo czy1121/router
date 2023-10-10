@@ -19,7 +19,7 @@ object Router {
 
     private val table = RouteTable()
     private val schemes: MutableSet<String> = mutableSetOf()
-    private val forwarders: MutableList<RouteForwarder> = mutableListOf()
+    private val handlers: MutableList<RouteHandler> = mutableListOf()
     private val namedInterceptors: MutableMap<String, RouteInterceptor> = mutableMapOf()
 
     fun init(context: Context) {
@@ -45,8 +45,8 @@ object Router {
         this.schemes.addAll(schemes)
     }
 
-    fun addForwarder(forwarder: RouteForwarder) {
-        this.forwarders.add(forwarder)
+    fun addHandler(handler: RouteHandler) {
+        this.handlers.add(handler)
     }
 
     fun addNamedInterceptor(name: String, handler: RouteInterceptor) {
@@ -68,8 +68,8 @@ object Router {
             return route(request, uri.host + uri.path)
         }
 
-        for (forwarder in forwarders) {
-            if (forwarder.forward(request)) {
+        for (handler in handlers) {
+            if (handler.handle(request)) {
                 return true
             }
         }

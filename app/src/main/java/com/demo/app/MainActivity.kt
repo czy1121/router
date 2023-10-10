@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import com.demo.app.databinding.ActivityMainBinding
 import me.reezy.cosmo.router.Router
-import me.reezy.cosmo.router.forwarder.*
+import me.reezy.cosmo.router.handler.*
 import me.reezy.cosmo.router.routeTo
 
 class MainActivity : AppCompatActivity() {
@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         Router.addSchemes("app", "myscheme")
 
         // 在WebView打开网页 "https://juejin.cn" 转发到 "web?url=https://juejin.cn"
-        Router.addForwarder(WebViewForwarder("web", setOf("juejin.cn", "localhost")))
+        Router.addHandler(WebViewHandler("web", setOf("juejin.cn", "localhost")))
 
         // 打开外部应用
         // domains/schemes 为白名单
@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         // domains 为空时，所有的 http/https 链接都通过外部应用打开
         // schemes 非空时，协议在名单内的链接通过外部应用打开
         // schemes 为空表，所有的链接都通过外部应用打开
-        Router.addForwarder(OutgoingForwarder(
+        Router.addHandler(OutgoingHandler(
             domains = setOf("developer.android.com"),
             schemes = setOf("weixin"),
         ))

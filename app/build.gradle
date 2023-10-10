@@ -1,5 +1,5 @@
 
-apply from: "$buildGradlePath/build-library-demo.gradle"
+apply from: "$buildGradlePath/build-demo.gradle"
 
 apply plugin: 'com.google.devtools.ksp'
 

@@ -1,2 +1,2 @@
 
-apply from: "$buildGradlePath/build-library-kotlin.gradle"
+apply from: "$buildGradlePath/build-kotlin.gradle"

@@ -8,9 +8,7 @@
 - 指定协议 - "yourscheme://path/page?a=1"
 - 通过 uri 在WebView打开网页
 - 通过 uri 打开外部应用
-
-
-此库专注于页面间跳转，页面参数解析由另外的库 (https://github.com/czy1121/argument) 负责，不包含 **依赖注入/Fragment获取/模块间通信** 之类的不相关功能。
+- 通过 https://github.com/czy1121/argument 解析页面参数 
 
 ## 引入
 
@@ -19,8 +17,8 @@ repositories {
     maven { url "https://gitee.com/ezy/repo/raw/cosmo/"}
 }
 dependencies {
-    implementation "me.reezy.cosmo:router:0.7.0"
-    ksp "me.reezy.cosmo:router-ksp:0.7.0"
+    implementation "me.reezy.cosmo:router:0.8.0"
+    ksp "me.reezy.cosmo:router-ksp:0.8.0"
 }
 ```
 
@@ -31,8 +29,8 @@ apply plugin: 'com.google.devtools.ksp'
 
 
 ksp {
-    arg("router.moduleName", "app")
-    arg("router.packageName", "YOUR_APPLICATION_ID")
+    arg("moduleName", "YOUR_MODULE_NAME")
+    arg("packageName", "GENERATED_PACKAGE_NAME")
 }
 ```
 
@@ -45,17 +43,14 @@ ksp {
 class HelloWorldActivity : AppCompatActivity() {
 }
 ```
-
-在 AndroidManifest.xml 的 <application> 里添加模块
-
-```kotlin
-<meta-data android:name="modules" android:value="app" />
-```
+ 
 
 初始化，根据指定的模块收集注册的路由
 
 ```kotlin
-Router.init(context)
+// 收集指定模块(modules)的路由
+// ${packageName}.generated.RouteLoader_${module}
+Router.init(packageName, modules) 
 ```
 
 跳转，在 `Activity/Fragment` 中可以直接使用 `routeTo` 方法
@@ -140,9 +135,9 @@ routeTo("app://hello/world")
 routeTo("myscheme://hello/world")
 ```
 
-## 路由转发
+## 路由处理器(`RouteHandler`)
 
-非应用内路由通过添加转发器处理，可实现多种功能
+非应用内路由通过添加处理器，可实现多种功能
 
 - 通过Uri在WebView打开网页
 - 通过Uri打开外部应用
@@ -154,7 +149,7 @@ routeTo("myscheme://hello/world")
 
 ```kotlin
 // "https://juejin.cn" 转发到 "web?url=https://juejin.cn"
-Router.addForwarder(WebViewForwarder("web", setOf("juejin.cn", "localhost")))
+Router.addHandler(WebViewHandler("web", setOf("juejin.cn", "localhost")))
 
 
 // 在 WebviewActivity 中打开该链接
@@ -170,7 +165,7 @@ routeTo("https://juejin.cn/user/3386151541932887")
 // domains 为空时，所有的 http/https 链接都通过外部应用打开
 // schemes 非空时，协议在名单内的链接通过外部应用打开
 // schemes 为空表，所有的链接都通过外部应用打开
-Router.addForwarder(OutgoingForwarder(
+Router.addHandler(OutgoingHandler(
     domains = setOf("developer.android.com"),
     schemes = setOf("weixin"),
 ))

@@ -19,9 +19,9 @@ class RouteProcessor(
     private val logger: KSPLogger,
     options: Map<String, String>,
 ) : SymbolProcessor {
-    private val moduleName: String = options["router.moduleName"] ?: ""
+    private val moduleName: String = options["router.moduleName"] ?: options["moduleName"] ?: ""
     private val formattedModuleName: String = moduleName.replace("[^0-9a-zA-Z_]+".toRegex(), "")
-    private val generatedPackageName: String = (options["router.packageName"] ?: PKG) + ".generated"
+    private val generatedPackageName: String = (options["router.packageName"] ?: options["packageName"] ?: PKG) + ".generated"
 
     init {
         logger.warn(options.toString())

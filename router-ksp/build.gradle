@@ -1,6 +1,6 @@
 
 
-apply from: "$buildGradlePath/build-library-ksp.gradle"
+apply from: "$buildGradlePath/build-ksp.gradle"
 
 
 dependencies {

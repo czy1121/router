@@ -1,14 +1,20 @@
-package me.reezy.cosmo.router.forwarder
+package me.reezy.cosmo.router.handler
 
 import android.net.Uri
 import android.os.Bundle
-import me.reezy.cosmo.router.RouteForwarder
+import androidx.core.net.toUri
+import androidx.core.os.bundleOf
+import me.reezy.cosmo.router.RouteHandler
 import me.reezy.cosmo.router.RouteRequest
 import me.reezy.cosmo.router.Router
 
-class WebViewForwarder(private val route: String, private val domains: Set<String> = setOf()) : RouteForwarder {
 
-    override fun forward(request: RouteRequest): Boolean {
+/**
+ * http/https to WebView
+ * */
+class WebViewHandler(private val route: String, private val domains: Set<String> = setOf()) : RouteHandler {
+
+    override fun handle(request: RouteRequest): Boolean {
         val uri = request.uri
         if (setOf("http", "https").contains(uri.scheme) && domains.contains(uri.host)) {
             val bundle = Bundle()

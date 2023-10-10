@@ -1,14 +1,18 @@
-package me.reezy.cosmo.router.forwarder
+package me.reezy.cosmo.router.handler
 
-import me.reezy.cosmo.router.RouteForwarder
+import androidx.core.net.toUri
+import me.reezy.cosmo.router.RouteHandler
 import me.reezy.cosmo.router.RouteRequest
 import me.reezy.cosmo.router.Router
 
-class OutgoingForwarder(private val domains: Set<String> = setOf(), private val schemes: Set<String> = setOf()) : RouteForwarder {
-    override fun forward(request: RouteRequest): Boolean {
+class OutgoingHandler(private val domains: Set<String> = setOf(), private val schemes: Set<String> = setOf()) : RouteHandler {
+    override fun handle(request: RouteRequest): Boolean {
         val uri = request.uri
         if (setOf("http", "https").contains(uri.scheme) && (domains.isEmpty() || domains.contains(uri.host))) {
             return Router.browse(request.context, uri)
+        }
+        if (uri.scheme.isNullOrEmpty()) {
+            return false
         }
         if (schemes.isEmpty() || schemes.contains(uri.scheme)) {
             return Router.browse(request.context, uri)
