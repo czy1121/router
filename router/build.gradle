@@ -2,7 +2,6 @@
 apply from: "$buildGradlePath/build-library-android.gradle"
 
 dependencies {
-    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
-    api 'androidx.core:core:1.9.0'
-    api 'androidx.fragment:fragment-ktx:1.5.2'
+    api libs.androidx.core
+    api libs.androidx.fragment
 }
