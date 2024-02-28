@@ -143,17 +143,22 @@ routeTo("myscheme://hello/world")
 - 通过Uri打开外部应用
 
 
-**路由到WebView打开网页**
+**打开网页链接(WebView)**
 
 将网页链接(http/https)转发到某个实现了WebView的页面
 
 ```kotlin
 // "https://juejin.cn" 转发到 "web?url=https://juejin.cn"
-Router.addHandler(WebViewHandler("web", setOf("juejin.cn", "localhost")))
+Router.addHandler(WebViewHandler("web", setOf("juejin.cn", "localhost"))) 
 
-
-// 在 WebviewActivity 中打开该链接
+// 相当于 routeTo("web", bundleOf("url" to "https://juejin.cn/user/3386151541932887"))
 routeTo("https://juejin.cn/user/3386151541932887")
+
+// 通过 WebView 打开链接(web-http/web-https)
+Router.addHandler(WebHttpHandler("web"))
+
+// 相当于 routeTo("web", bundleOf("url" to "http://baidu.com"))
+routeTo("web-http://baidu.com") 
 ```
 
 
@@ -168,15 +173,35 @@ routeTo("https://juejin.cn/user/3386151541932887")
 Router.addHandler(OutgoingHandler(
     domains = setOf("developer.android.com"),
     schemes = setOf("weixin"),
-))
-
+)) 
 
 // 唤起微信
 routeTo("weixin://dl/business?ticket=x")
 // 在外部浏览器打开外链网页
-routeTo("https://developer.android.com/kotlin")
+routeTo("https://developer.android.com/kotlin") 
+
+
+// 通过外部浏览器打开链接(out-http/out-https)
+Router.addHandler(OutHttpHandler())
+
+// 相当于 Router.browse("https://baidu.com")
+routeTo("out-https://baidu.com")
 ```
 
+**打开别名链接**
+
+```kotlin
+val urls = mapOf(
+    "protocol" to "https://www.domain.com/protocol.html",
+    "kotlin" to "https://developer.android.com/kotlin",
+    "weixin" to "weixin://dl/business?ticket=x",
+)
+Router.addHandler(AliasHandler(GlobalData.urls))
+
+routeTo("alias://protocol") // 相当于 routeTo("https://www.domain.com/protocol.html")
+routeTo("alias://kotlin") // 相当于 routeTo("https://developer.android.com/kotlin")
+routeTo("alias://weixin") // 相当于 routeTo("weixin://dl/business?ticket=x")
+```
 
 ## 通过路由执行代码
 
