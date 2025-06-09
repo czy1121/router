@@ -1,13 +1,17 @@
 package com.demo.app
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 import com.demo.app.databinding.ActivityMainBinding
 import me.reezy.cosmo.router.Router
 import me.reezy.cosmo.router.handler.*
 import me.reezy.cosmo.router.routeTo
+import me.reezy.cosmo.utility.toast
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,15 +31,13 @@ class MainActivity : AppCompatActivity() {
         Router.addHandler(WebViewHandler("web", setOf("juejin.cn", "localhost")))
 
         // 打开外部应用
-        // domains/schemes 为白名单
-        // domains 非空时，域名在名单内的 http/https 链接通过外部应用打开
-        // domains 为空时，所有的 http/https 链接都通过外部应用打开
-        // schemes 非空时，协议在名单内的链接通过外部应用打开
-        // schemes 为空表，所有的链接都通过外部应用打开
-        Router.addHandler(OutgoingHandler(
-            domains = setOf("developer.android.com"),
-            schemes = setOf("weixin"),
-        ))
+        // host 在白名单内的链接(http/https)通过外部应用打开
+        Router.addHandler(OutHostHandler("developer.android.com", "baidu.com"))
+
+        // 打开外部应用
+        // scheme 在白名单内的链接通过外部应用打开
+        Router.addHandler(OutSchemeHandler("weixin"))
+
 
         // 打开 HelloWorldActivity
         binding.pageA.linkTo("hello/world")
@@ -49,6 +51,8 @@ class MainActivity : AppCompatActivity() {
         binding.browseA.linkTo("weixin://dl/business?ticket=x")
         // 在外部浏览器打开外链网页
         binding.browseB.linkTo("https://developer.android.com/kotlin")
+        // 在外部浏览器打开外链网页
+        binding.browseC.linkTo("https://baidu.com")
 
 
 

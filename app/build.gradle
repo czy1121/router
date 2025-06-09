@@ -12,7 +12,7 @@ ksp {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
 
-    implementation 'me.reezy.cosmo:argument:0.7.0'
+    implementation 'me.reezy.cosmo:utility:0.10.33'
 
     implementation project(':router')
     implementation project(':router-annotation')

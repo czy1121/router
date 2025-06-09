@@ -82,16 +82,16 @@ object Router {
         val intent = Intent()
         intent.action = Intent.ACTION_VIEW
         intent.data = uri
-
-        val resolved = context.packageManager.resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY) != null
-        if (resolved) {
-            if (context !is Activity) {
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            }
-            context.startActivity(intent)
-            return true
+        if (context !is Activity) {
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         }
-        return false
+        try {
+            context.startActivity(intent)
+        } catch (_: Throwable) {
+
+        }
+
+        return true
     }
 
     private fun route(request: RouteRequest, route: String): Boolean {
@@ -106,7 +106,7 @@ object Router {
 
     private fun handle(request: RouteRequest, route: Route): Boolean {
         route.interceptors?.forEach {
-            if (namedInterceptors[it]?.intercept(request)!!) {
+            if (namedInterceptors[it]?.intercept(request) == true) {
                 return true
             }
         }
@@ -171,7 +171,6 @@ object Router {
         }
         return bundle
     }
-
 
 
     internal fun log(message: String) {

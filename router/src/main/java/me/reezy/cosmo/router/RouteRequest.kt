@@ -15,5 +15,13 @@ class RouteRequest(
     val requestCode: Int,
     val enterAnim: Int,
     val exitAnim: Int,
-    val activityOptions: Bundle?
-)
+    val activityOptions: Bundle?,
+) {
+    fun getParam(key: String): String? = uri.getQueryParameter(key) ?: kotlin.run {
+        when (val value = params.get(key)) {
+            is String -> value
+            is Number, Boolean -> value.toString()
+            else -> null
+        }
+    }
+}

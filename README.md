@@ -7,8 +7,7 @@
 - 相对链接 - "path/page?a=1"
 - 指定协议 - "yourscheme://path/page?a=1"
 - 通过 uri 在WebView打开网页
-- 通过 uri 打开外部应用
-- 通过 https://github.com/czy1121/argument 解析页面参数 
+- 通过 uri 打开外部应用 
 
 ## 引入
 
@@ -165,15 +164,13 @@ routeTo("web-http://baidu.com")
 **打开外部应用**
 
 ```kotlin
-// domains/schemes 为白名单，为空时表示全部通过
-// domains 非空时，域名在名单内的 http/https 链接通过外部应用打开
-// domains 为空时，所有的 http/https 链接都通过外部应用打开
-// schemes 非空时，协议在名单内的链接通过外部应用打开
-// schemes 为空表，所有的链接都通过外部应用打开
-Router.addHandler(OutgoingHandler(
-    domains = setOf("developer.android.com"),
-    schemes = setOf("weixin"),
-)) 
+// 打开外部应用
+// host 在白名单内的链接(http/https)通过外部应用打开
+Router.addHandler(OutHostHandler("developer.android.com"))
+
+// 打开外部应用
+// scheme 在白名单内的链接通过外部应用打开
+Router.addHandler(OutSchemeHandler("weixin"))
 
 // 唤起微信
 routeTo("weixin://dl/business?ticket=x")
@@ -242,8 +239,8 @@ routeTo("callable/demo")
   ```kotlin
   @Route("waoh/:a/:b")
   class PathParamsActivity : AppCompatActivity() {
-    val a by ArgumentString()
-    val b by ArgumentString()
+    val a by extraString()
+    val b by extraString()
   }
 
   // 跳转到 PathParamsActivity 页面 a = aaa2, b = bbb2

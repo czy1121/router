@@ -6,16 +6,16 @@ import android.os.Bundle
 import android.view.ViewGroup
 import android.webkit.*
 import androidx.appcompat.app.AppCompatActivity
-import me.reezy.cosmo.ArgumentString
 import me.reezy.cosmo.router.Router
 import me.reezy.cosmo.router.annotation.Route
 import me.reezy.cosmo.router.routeTo
+import me.reezy.cosmo.utility.delegate.extraString
 
 @Route("web")
 class WebViewActivity : AppCompatActivity(R.layout.layout_web) {
 
     // 获取url参数
-    private val url by ArgumentString()
+    private val url by extraString()
 
     private val web by lazy { findViewById<WebView>(R.id.web) }
 
@@ -62,8 +62,8 @@ class WebViewActivity : AppCompatActivity(R.layout.layout_web) {
     private fun initWebSettings(web: WebView) {
         val settings = web.settings
         // 缓存(cache)
-        settings.setAppCacheEnabled(false)
-        settings.setAppCachePath(web.context.cacheDir.absolutePath)
+//        settings.setAppCacheEnabled(false)
+//        settings.setAppCachePath(web.context.cacheDir.absolutePath)
 
         // 存储(storage)
         settings.domStorageEnabled = true
