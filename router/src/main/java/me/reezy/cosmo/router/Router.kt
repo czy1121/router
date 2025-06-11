@@ -82,9 +82,7 @@ object Router {
         val intent = Intent()
         intent.action = Intent.ACTION_VIEW
         intent.data = uri
-        if (context !is Activity) {
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        }
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         try {
             context.startActivity(intent)
         } catch (_: Throwable) {
